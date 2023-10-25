@@ -24,12 +24,15 @@ app.use(require("cookie-session")({secret:process.env.SECRET_KEY}))
 // res.getModelList():
 app.use(require("./src/middlewares/findSearchSortPage"))
 
+
 //Homepage
 app.all("/", (req, res) => {
   res.send("Welcome to PersonnelAPI!");
 });
 
 //Routes
+
+app.use("/departments", require("./src/routes/department.router"))
 
 
 
