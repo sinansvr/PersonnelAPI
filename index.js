@@ -32,7 +32,11 @@ app.all("/", (req, res) => {
 
 //Routes
 
+//departments
 app.use("/departments", require("./src/routes/department.router"))
+
+//personnels
+app.use("/personnels", require("./src/routes/department.router"))
 
 
 
