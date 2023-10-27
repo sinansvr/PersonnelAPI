@@ -48,13 +48,16 @@ module.exports={
         })
 
     },
+
     delete: async ( req, res )=>{
 
-        const data = await Department.delete({_id:req.params.id})
+        const data = await Department.deleteOne({_id:req.params.id})
+        
+        console.log(data)
         
         res.status(data.deletedCount>=1 ? 204 : 404).send({
             error: !data.deletedCount,
-            data
+            data: data
         })
 
     }

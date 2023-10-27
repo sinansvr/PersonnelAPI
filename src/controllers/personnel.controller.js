@@ -15,6 +15,12 @@ module.exports={
     },
     create: async ( req, res )=>{
 
+        const isLead = req.body?.isLead || false
+
+        if(isLead){
+            await Personnel.updateMany({departmentId: req.body.departmentId, isLead:true},{ isLead: false}) 
+        }
+
         const data = await Personnel.create(req.body)
 
         res.status(201).send({
@@ -37,6 +43,16 @@ module.exports={
     },
     
     update: async ( req, res )=>{
+
+        
+        const isLead = req.body?.isLead || false
+        
+        if(isLead){
+            const {departmentId}= await Personnel.findOne({_id:req.params.id},{department:1})
+            await Personnel.updateMany({departmentId, isLead:true},{ isLead: false}) 
+        }
+
+
 
         const data = await Personnel.update({_id:req.params.id}, req.body)
 
